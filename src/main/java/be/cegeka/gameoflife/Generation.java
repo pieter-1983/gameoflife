@@ -25,14 +25,14 @@ public class Generation {
         if (cell == null) return Collections.emptyList();
         // here we've identified that there is indeed a Cell at the given position
         // so let's start finding neighbours in all directions
-        findCellAt(x,y-1); //left neighbour
-        findCellAt(x,y+1); //right neighbour
-        findCellAt(x-1,y); //top neighbour
-        findCellAt(x-1,y-1); //top-left neighbour
-        findCellAt(x-1,y+1); //top-right neighbour
-        findCellAt(x+1,y); //bottom neighbour
-        findCellAt(x+1,y-1); //bottom-left neighbour
-        findCellAt(x+1,y+1); //bottom-right neighbour
+        Cell leftNeighbour = findCellAt(x, y - 1);
+        Cell rightNeighbour = findCellAt(x,y+1);
+        Cell topNeighbour = findCellAt(x-1,y);
+        Cell topLeftNeighbour = findCellAt(x-1,y-1);
+        Cell topRightNeighbour = findCellAt(x-1,y+1);
+        Cell bottomNeighbour = findCellAt(x+1,y);
+        Cell bottomLeftNeighbour = findCellAt(x+1,y-1);
+        Cell bottomRightNeighbour = findCellAt(x+1,y+1);
 
         return Collections.emptyList();
     }
