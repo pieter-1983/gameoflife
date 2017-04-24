@@ -7,8 +7,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static be.cegeka.gameoflife.Position.pos;
-
 public class Generation {
     private List<List<Cell>> cells;
 
@@ -38,8 +36,6 @@ public class Generation {
     }
 
     private Stream<Cell> findExistingNeighbours(Position pos) {
-        int x = pos.x();
-        int y = pos.y();
         return Stream.of(
                 findCellAt(pos.top().left()),
                 findCellAt(pos.top()),
