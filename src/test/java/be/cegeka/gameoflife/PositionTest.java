@@ -52,6 +52,6 @@ public class PositionTest {
         assertThat(originalPosition.top().right().bottom().bottom().left().left().top()).isEqualTo(pos(2,1));
         assertThat(originalPosition.top().right().bottom().bottom().left().left().top().top()).isEqualTo(pos(1,1));
         assertThat(originalPosition.top().right().bottom().bottom().left().left().top().top().right()).isEqualTo(pos(1,2));
-        assertThat(originalPosition.top().right().bottom().bottom().left().left().top().top().right().bottom()).isEqualTo(pos(2,2));
+        assertThat(originalPosition.top().right().bottom().bottom().left().left().top().top().right().bottom()).isEqualTo(originalPosition);
     }
 }
