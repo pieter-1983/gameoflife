@@ -30,23 +30,15 @@ public class Generation {
     }
 
     private List<Cell> findLiveNeighbours(int x, int y) {
-        Cell leftNeighbour = findCellAt(x, y - 1);
-        Cell rightNeighbour = findCellAt(x, y + 1);
-        Cell topNeighbour = findCellAt(x - 1, y);
-        Cell topLeftNeighbour = findCellAt(x - 1, y - 1);
-        Cell topRightNeighbour = findCellAt(x - 1, y + 1);
-        Cell bottomNeighbour = findCellAt(x + 1, y);
-        Cell bottomLeftNeighbour = findCellAt(x + 1, y - 1);
-        Cell bottomRightNeighbour = findCellAt(x + 1, y + 1);
         return Stream.of(
-                leftNeighbour,
-                rightNeighbour,
-                topNeighbour,
-                topLeftNeighbour,
-                topRightNeighbour,
-                bottomNeighbour,
-                bottomLeftNeighbour,
-                bottomRightNeighbour
+                findCellAt(x, y - 1),
+                findCellAt(x, y + 1),
+                findCellAt(x - 1, y),
+                findCellAt(x - 1, y - 1),
+                findCellAt(x - 1, y + 1),
+                findCellAt(x + 1, y),
+                findCellAt(x + 1, y - 1),
+                findCellAt(x + 1, y + 1)
         )
         .filter(Objects::nonNull)
         .filter(Cell::isAlive)
