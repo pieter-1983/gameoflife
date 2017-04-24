@@ -44,6 +44,12 @@ public class Generation {
     }
 
     Cell findNeighbour(int x, int y) {
-        return null;
+        Cell cell;
+        try {
+            cell = this.cells.get(x).get(y);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
+        return cell;
     }
 }
