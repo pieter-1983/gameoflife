@@ -24,8 +24,7 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(Position pos) {
-        Cell cell = cellAt(pos);
-        if (cell == null) return Collections.emptyList();
+        if (cellAt(pos) == null) return Collections.emptyList();
         return findLiveNeighbours(pos);
     }
 
