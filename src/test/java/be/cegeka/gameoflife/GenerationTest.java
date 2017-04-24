@@ -18,12 +18,12 @@ public class GenerationTest {
 
     @Test
     public void getLiveNeighbours_CellAtPositionHasOnlyLiveNeighbours_ReturnsAllNeighbourCells() throws Exception {
-        Generation generationWithOneCell = Generation.of
+        Generation generationWithOnlyLiveCells = Generation.of
                 ( asList(live(), live(), live())
                 , asList(live(), live(), live())
                 , asList(live(), live(), live())
                 );
-        assertThat(generationWithOneCell.getLiveNeighbours(1,1)).hasSize(8);
+        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(1,1)).hasSize(8);
     }
 
     @Test
@@ -34,11 +34,17 @@ public class GenerationTest {
 
     @Test
     public void findNeighbour_NoCellAtPosition_ReturnsNull() throws Exception {
-
+        Generation generationWithOneRow = Generation.of(asList(live(), live(), live()));
+        assertThat(generationWithOneRow.findNeighbour(1, 0)).isNull();
     }
 
     @Test
     public void findNeighbour_CellAtPosition_ReturnsCell() throws Exception {
-
+        Generation generation = Generation.of
+                ( asList(live(), live(), live())
+                , asList(dead(), live(), live())
+                , asList(live(), live(), live())
+                );
+        assertThat(generation.findNeighbour(1, 0)).isEqualTo(dead());
     }
 }
