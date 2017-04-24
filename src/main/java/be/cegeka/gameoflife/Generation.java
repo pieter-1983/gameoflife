@@ -29,6 +29,9 @@ public class Generation {
         } catch (IndexOutOfBoundsException e) {
             return Collections.emptyList();
         }
+        // here we've identified that there is indeed a Cell at the given position
+        // so let's start finding neighbours in all directions
+
         return Collections.emptyList();
     }
 }
