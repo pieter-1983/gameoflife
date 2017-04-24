@@ -5,19 +5,21 @@ import org.junit.Test;
 import java.util.Arrays;
 
 import static be.cegeka.gameoflife.Cell.dead;
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GenerationTest {
 
     @Test
     public void getLiveNeighbours_NoCellAtPosition_ReturnsEmptyList() throws Exception {
-        Generation generationWithOneCell = Generation.of(Arrays.asList(dead()));
+        Generation generationWithOneCell = Generation.of(asList(dead()));
         assertThat(generationWithOneCell.getLiveNeighbours(0,1)).isEmpty();
     }
 
     @Test
     public void getLiveNeighbours_CellAtPositionHasLiveNeighbours_ReturnsAllLiveNeighbours() throws Exception {
-
+        Generation generationWithOneCell = Generation.of(asList(dead()));
+        assertThat(generationWithOneCell.getLiveNeighbours(0,1)).isEmpty();
     }
 
     @Test
