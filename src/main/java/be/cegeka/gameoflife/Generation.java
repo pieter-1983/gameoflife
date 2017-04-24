@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 public class Generation {
     private List<List<Cell>> cells;
 
@@ -23,6 +21,14 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(int x, int y) {
+        List<Cell> row;
+        Cell cell;
+        try {
+            row = this.cells.get(x);
+            cell = row.get(y);
+        } catch (IndexOutOfBoundsException e) {
+            return Collections.emptyList();
+        }
         return Collections.emptyList();
     }
 }

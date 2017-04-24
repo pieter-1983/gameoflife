@@ -1,5 +1,6 @@
 package be.cegeka.gameoflife;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static be.cegeka.gameoflife.Cell.dead;
@@ -26,6 +27,7 @@ public class GenerationTest {
     }
 
     @Test
+    @Ignore("still implementing other tests")
     public void getLiveNeighbours_CellAtPositionHasOnlyDeadNeighbours_ReturnsEmptyList() throws Exception {
 
     }
