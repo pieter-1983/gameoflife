@@ -31,4 +31,14 @@ public class GenerationTest {
     public void getLiveNeighbours_CellAtPositionHasOnlyDeadNeighbours_ReturnsEmptyList() throws Exception {
 
     }
+
+    @Test
+    public void findNeighbour_NoCellAtPosition_ReturnsNull() throws Exception {
+
+    }
+
+    @Test
+    public void findNeighbour_CellAtPosition_ReturnsCell() throws Exception {
+
+    }
 }
