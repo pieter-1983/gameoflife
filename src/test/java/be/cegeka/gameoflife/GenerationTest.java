@@ -14,7 +14,7 @@ public class GenerationTest {
     @Test
     public void getLiveNeighbours_NoCellAtPosition_ReturnsEmptyList() throws Exception {
         Generation generationWithOneCell = Generation.of(asList(dead()));
-        assertThat(generationWithOneCell.getLiveNeighbours(0,1)).isEmpty();
+        assertThat(generationWithOneCell.getLiveNeighbours(pos(0,1))).isEmpty();
     }
 
     @Test
@@ -24,7 +24,7 @@ public class GenerationTest {
                 , asList(live(), live(), live())
                 , asList(live(), live(), live())
                 );
-        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(1,1)).hasSize(8);
+        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(pos(1,1))).hasSize(8);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class GenerationTest {
                 , asList(dead(), live(), dead())
                 , asList(dead(), dead(), dead())
                 );
-        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(1,1)).isEmpty();
+        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(pos(1,1))).isEmpty();
     }
 
     @Test
@@ -43,7 +43,7 @@ public class GenerationTest {
                 ( asList(live(), live())
                 , asList(live(), live())
                 );
-        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(1,1)).hasSize(3);
+        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(pos(1,1))).hasSize(3);
     }
 
     @Test

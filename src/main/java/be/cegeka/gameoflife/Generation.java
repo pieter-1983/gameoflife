@@ -25,10 +25,10 @@ public class Generation {
         return cells;
     }
 
-    public List<Cell> getLiveNeighbours(int x, int y) {
-        Cell cell = findCellAt(pos(x, y));
+    public List<Cell> getLiveNeighbours(Position pos) {
+        Cell cell = findCellAt(pos);
         if (cell == null) return Collections.emptyList();
-        return findLiveNeighbours(pos(x,y));
+        return findLiveNeighbours(pos);
     }
 
     private List<Cell> findLiveNeighbours(Position pos) {
