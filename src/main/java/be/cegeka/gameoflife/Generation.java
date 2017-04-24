@@ -30,6 +30,12 @@ public class Generation {
     }
 
     private List<Cell> findLiveNeighbours(int x, int y) {
+        return findExistingNeighbours(x, y)
+                .filter(Cell::isAlive)
+                .collect(Collectors.toList());
+    }
+
+    private Stream<Cell> findExistingNeighbours(int x, int y) {
         return Stream.of(
                 findCellAt(x - 1, y - 1),
                 findCellAt(x - 1, y),
@@ -40,9 +46,7 @@ public class Generation {
                 findCellAt(x + 1, y),
                 findCellAt(x + 1, y + 1)
         )
-        .filter(Objects::nonNull)
-        .filter(Cell::isAlive)
-        .collect(Collectors.toList());
+        .filter(Objects::nonNull);
     }
 
     Cell findCellAt(int x, int y) {
