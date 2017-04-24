@@ -63,10 +63,14 @@ public class GenerationTest {
     }
 
     @Test
-    @Ignore("take care of this case")
-    public void cellAt_NegativeX_ReturnsNull() throws Exception {}
+    public void cellAt_NegativeX_ReturnsNull() throws Exception {
+        Generation generation = Generation.of(asList(live(), live(), live()));
+        assertThat(generation.cellAt(pos(-1, 0))).isNull();
+    }
 
     @Test
-    @Ignore("take care of this case")
-    public void cellAt_NegativeY_ReturnsNull() throws Exception {}
+    public void cellAt_NegativeY_ReturnsNull() throws Exception {
+        Generation generation = Generation.of(asList(live(), live(), live()));
+        assertThat(generation.cellAt(pos(0, -1))).isNull();
+    }
 }
