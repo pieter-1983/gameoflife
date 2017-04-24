@@ -26,16 +26,18 @@ public class Generation {
     public List<Cell> getLiveNeighbours(int x, int y) {
         Cell cell = findCellAt(x, y);
         if (cell == null) return Collections.emptyList();
-        return findLiveNeighbours(x, y);
+        return findLiveNeighbours(Position.pos(x,y));
     }
 
-    private List<Cell> findLiveNeighbours(int x, int y) {
-        return findExistingNeighbours(x, y)
+    private List<Cell> findLiveNeighbours(Position pos) {
+        return findExistingNeighbours(pos)
                 .filter(Cell::isAlive)
                 .collect(Collectors.toList());
     }
 
-    private Stream<Cell> findExistingNeighbours(int x, int y) {
+    private Stream<Cell> findExistingNeighbours(Position pos) {
+        int x = pos.x();
+        int y = pos.y();
         return Stream.of(
                 findCellAt(x - 1, y - 1),
                 findCellAt(x - 1, y),
