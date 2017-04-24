@@ -47,4 +47,12 @@ public class GenerationTest {
                 );
         assertThat(generation.findCellAt(1, 0)).isEqualTo(dead());
     }
+
+    @Test
+    @Ignore("take care of this case")
+    public void findCellAt_NegativeX_ReturnsNull() throws Exception {}
+
+    @Test
+    @Ignore("take care of this case")
+    public void findCellAt_NegativeY_ReturnsNull() throws Exception {}
 }
