@@ -25,8 +25,10 @@ public class Generation {
     public List<Cell> getLiveNeighbours(int x, int y) {
         Cell cell = findCellAt(x, y);
         if (cell == null) return Collections.emptyList();
-        // here we've identified that there is indeed a Cell at the given position
-        // so let's start finding neighbours in all directions
+        return findLiveNeighbours(x, y);
+    }
+
+    private List<Cell> findLiveNeighbours(int x, int y) {
         Cell leftNeighbour = findCellAt(x, y - 1);
         Cell rightNeighbour = findCellAt(x, y + 1);
         Cell topNeighbour = findCellAt(x - 1, y);
