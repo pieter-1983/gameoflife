@@ -1,6 +1,7 @@
 package be.cegeka.gameoflife;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Generation {
@@ -20,6 +21,6 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(int x, int y) {
-        return null;
+        return Collections.emptyList();
     }
 }
