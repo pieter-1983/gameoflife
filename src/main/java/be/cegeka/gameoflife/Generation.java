@@ -41,14 +41,14 @@ public class Generation {
         int x = pos.x();
         int y = pos.y();
         return Stream.of(
-                findCellAt(pos(x - 1, y - 1)),
-                findCellAt(pos(x - 1, y)),
-                findCellAt(pos(x - 1, y + 1)),
-                findCellAt(pos(x, y - 1)),
-                findCellAt(pos(x, y + 1)),
-                findCellAt(pos(x + 1, y - 1)),
-                findCellAt(pos(x + 1, y)),
-                findCellAt(pos(x + 1, y + 1))
+                findCellAt(pos.top().left()),
+                findCellAt(pos.top()),
+                findCellAt(pos.top().right()),
+                findCellAt(pos.left()),
+                findCellAt(pos.right()),
+                findCellAt(pos.bottom().left()),
+                findCellAt(pos.bottom()),
+                findCellAt(pos.bottom().right())
         )
         .filter(Objects::nonNull);
     }

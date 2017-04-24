@@ -37,4 +37,20 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public Position left() {
+        return pos(x, y - 1);
+    }
+
+    public Position right() {
+        return pos(x, y + 1);
+    }
+
+    public Position top() {
+        return pos(x - 1, y);
+    }
+
+    public Position bottom() {
+        return pos(x + 1, y);
+    }
 }
