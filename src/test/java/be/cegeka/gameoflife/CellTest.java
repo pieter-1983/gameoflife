@@ -26,4 +26,13 @@ public class CellTest {
         assertThat(dead().toString()).isEqualTo("dead");
     }
 
+    @Test
+    public void isAlive_LiveCell_IsAlive() throws Exception {
+        assertThat(live().isAlive()).isTrue();
+    }
+
+    @Test
+    public void isAlive_DeadCell_IsNotAlive() throws Exception {
+        assertThat(dead().isAlive()).isFalse();
+    }
 }

@@ -17,6 +17,10 @@ class Cell {
         this.alive = alive;
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -34,4 +38,6 @@ class Cell {
     public String toString() {
         return alive ? "live" : "dead";
     }
+
+
 }
