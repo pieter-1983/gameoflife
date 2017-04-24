@@ -18,4 +18,8 @@ public class Generation {
     public List<List<Cell>> as2DList() {
         return cells;
     }
+
+    public List<Cell> getLiveNeighbours(int x, int y) {
+        return null;
+    }
 }
