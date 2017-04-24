@@ -8,4 +8,9 @@ public class GenerationTest {
     public void getNeighbours_NoCellAtPosition_ReturnsEmptyList() throws Exception {
 
     }
+
+    @Test
+    public void getNeighbours_CellAtPosition_ReturnsAllNeighbours() throws Exception {
+
+    }
 }
