@@ -31,13 +31,13 @@ public class Generation {
 
     private List<Cell> findLiveNeighbours(int x, int y) {
         return Stream.of(
+                findCellAt(x - 1, y - 1),
+                findCellAt(x - 1, y),
+                findCellAt(x - 1, y + 1),
                 findCellAt(x, y - 1),
                 findCellAt(x, y + 1),
-                findCellAt(x - 1, y),
-                findCellAt(x - 1, y - 1),
-                findCellAt(x - 1, y + 1),
-                findCellAt(x + 1, y),
                 findCellAt(x + 1, y - 1),
+                findCellAt(x + 1, y),
                 findCellAt(x + 1, y + 1)
         )
         .filter(Objects::nonNull)
