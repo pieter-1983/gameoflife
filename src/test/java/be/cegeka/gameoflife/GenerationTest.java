@@ -10,7 +10,12 @@ public class GenerationTest {
     }
 
     @Test
-    public void getLiveNeighbours_CellAtPosition_ReturnsAllLiveNeighbours() throws Exception {
+    public void getLiveNeighbours_CellAtPositionHasLiveNeighbours_ReturnsAllLiveNeighbours() throws Exception {
+
+    }
+
+    @Test
+    public void getLiveNeighbours_CellAtPositionHasOnlyDeadNeighbours_ReturnsEmptyList() throws Exception {
 
     }
 }
