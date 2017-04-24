@@ -24,7 +24,7 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(Position pos) {
-        Cell cell = findCellAt(pos);
+        Cell cell = cellAt(pos);
         if (cell == null) return Collections.emptyList();
         return findLiveNeighbours(pos);
     }
@@ -37,19 +37,19 @@ public class Generation {
 
     private Stream<Cell> findExistingNeighbours(Position pos) {
         return Stream.of(
-                findCellAt(pos.top().left()),
-                findCellAt(pos.top()),
-                findCellAt(pos.top().right()),
-                findCellAt(pos.left()),
-                findCellAt(pos.right()),
-                findCellAt(pos.bottom().left()),
-                findCellAt(pos.bottom()),
-                findCellAt(pos.bottom().right())
+                cellAt(pos.top().left()),
+                cellAt(pos.top()),
+                cellAt(pos.top().right()),
+                cellAt(pos.left()),
+                cellAt(pos.right()),
+                cellAt(pos.bottom().left()),
+                cellAt(pos.bottom()),
+                cellAt(pos.bottom().right())
         )
         .filter(Objects::nonNull);
     }
 
-    Cell findCellAt(Position pos) {
+    Cell cellAt(Position pos) {
         Cell cell;
         try {
             cell = this.cells.get(pos.x()).get(pos.y());

@@ -47,26 +47,26 @@ public class GenerationTest {
     }
 
     @Test
-    public void findCellAt_NoCellAtPosition_ReturnsNull() throws Exception {
+    public void cellAt_NoCellAtPosition_ReturnsNull() throws Exception {
         Generation generationWithOneRow = Generation.of(asList(live(), live(), live()));
-        assertThat(generationWithOneRow.findCellAt(pos(1, 0))).isNull();
+        assertThat(generationWithOneRow.cellAt(pos(1, 0))).isNull();
     }
 
     @Test
-    public void findCellAt_CellAtPosition_ReturnsCell() throws Exception {
+    public void cellAt_CellAtPosition_ReturnsCell() throws Exception {
         Generation generation = Generation.of
                 ( asList(live(), live(), live())
                 , asList(dead(), live(), live())
                 , asList(live(), live(), live())
                 );
-        assertThat(generation.findCellAt(pos(1, 0))).isEqualTo(dead());
+        assertThat(generation.cellAt(pos(1, 0))).isEqualTo(dead());
     }
 
     @Test
     @Ignore("take care of this case")
-    public void findCellAt_NegativeX_ReturnsNull() throws Exception {}
+    public void cellAt_NegativeX_ReturnsNull() throws Exception {}
 
     @Test
     @Ignore("take care of this case")
-    public void findCellAt_NegativeY_ReturnsNull() throws Exception {}
+    public void cellAt_NegativeY_ReturnsNull() throws Exception {}
 }
