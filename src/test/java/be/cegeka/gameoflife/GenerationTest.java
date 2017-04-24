@@ -27,9 +27,13 @@ public class GenerationTest {
     }
 
     @Test
-    @Ignore("still implementing other tests")
     public void getLiveNeighbours_CellAtPositionHasOnlyDeadNeighbours_ReturnsEmptyList() throws Exception {
-
+        Generation generationWithOnlyLiveCells = Generation.of
+                ( asList(dead(), dead(), dead())
+                , asList(dead(), live(), dead())
+                , asList(dead(), dead(), dead())
+                );
+        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(1,1)).isEmpty();
     }
 
     @Test
