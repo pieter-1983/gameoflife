@@ -3,6 +3,8 @@ package be.cegeka.gameoflife;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Generation {
     private List<List<Cell>> cells;
@@ -26,15 +28,25 @@ public class Generation {
         // here we've identified that there is indeed a Cell at the given position
         // so let's start finding neighbours in all directions
         Cell leftNeighbour = findCellAt(x, y - 1);
-        Cell rightNeighbour = findCellAt(x,y+1);
-        Cell topNeighbour = findCellAt(x-1,y);
-        Cell topLeftNeighbour = findCellAt(x-1,y-1);
-        Cell topRightNeighbour = findCellAt(x-1,y+1);
-        Cell bottomNeighbour = findCellAt(x+1,y);
-        Cell bottomLeftNeighbour = findCellAt(x+1,y-1);
-        Cell bottomRightNeighbour = findCellAt(x+1,y+1);
-
-        return Collections.emptyList();
+        Cell rightNeighbour = findCellAt(x, y + 1);
+        Cell topNeighbour = findCellAt(x - 1, y);
+        Cell topLeftNeighbour = findCellAt(x - 1, y - 1);
+        Cell topRightNeighbour = findCellAt(x - 1, y + 1);
+        Cell bottomNeighbour = findCellAt(x + 1, y);
+        Cell bottomLeftNeighbour = findCellAt(x + 1, y - 1);
+        Cell bottomRightNeighbour = findCellAt(x + 1, y + 1);
+        return Stream.of(
+                leftNeighbour,
+                rightNeighbour,
+                topNeighbour,
+                topLeftNeighbour,
+                topRightNeighbour,
+                bottomNeighbour,
+                bottomLeftNeighbour,
+                bottomRightNeighbour
+        )
+        .filter(Cell::isAlive)
+        .collect(Collectors.toList());
     }
 
     Cell findCellAt(int x, int y) {
