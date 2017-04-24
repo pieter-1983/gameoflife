@@ -21,23 +21,23 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(int x, int y) {
-        Cell cell = findNeighbour(x, y);
+        Cell cell = findCellAt(x, y);
         if (cell == null) return Collections.emptyList();
         // here we've identified that there is indeed a Cell at the given position
         // so let's start finding neighbours in all directions
-        findNeighbour(x,y-1); //left neighbour
-        findNeighbour(x,y+1); //right neighbour
-        findNeighbour(x-1,y); //top neighbour
-        findNeighbour(x-1,y-1); //top-left neighbour
-        findNeighbour(x-1,y+1); //top-right neighbour
-        findNeighbour(x+1,y); //bottom neighbour
-        findNeighbour(x+1,y-1); //bottom-left neighbour
-        findNeighbour(x+1,y+1); //bottom-right neighbour
+        findCellAt(x,y-1); //left neighbour
+        findCellAt(x,y+1); //right neighbour
+        findCellAt(x-1,y); //top neighbour
+        findCellAt(x-1,y-1); //top-left neighbour
+        findCellAt(x-1,y+1); //top-right neighbour
+        findCellAt(x+1,y); //bottom neighbour
+        findCellAt(x+1,y-1); //bottom-left neighbour
+        findCellAt(x+1,y+1); //bottom-right neighbour
 
         return Collections.emptyList();
     }
 
-    Cell findNeighbour(int x, int y) {
+    Cell findCellAt(int x, int y) {
         Cell cell;
         try {
             cell = this.cells.get(x).get(y);

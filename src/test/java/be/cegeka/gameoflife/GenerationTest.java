@@ -33,18 +33,18 @@ public class GenerationTest {
     }
 
     @Test
-    public void findNeighbour_NoCellAtPosition_ReturnsNull() throws Exception {
+    public void findCellAt_NoCellAtPosition_ReturnsNull() throws Exception {
         Generation generationWithOneRow = Generation.of(asList(live(), live(), live()));
-        assertThat(generationWithOneRow.findNeighbour(1, 0)).isNull();
+        assertThat(generationWithOneRow.findCellAt(1, 0)).isNull();
     }
 
     @Test
-    public void findNeighbour_CellAtPosition_ReturnsCell() throws Exception {
+    public void findCellAt_CellAtPosition_ReturnsCell() throws Exception {
         Generation generation = Generation.of
                 ( asList(live(), live(), live())
                 , asList(dead(), live(), live())
                 , asList(live(), live(), live())
                 );
-        assertThat(generation.findNeighbour(1, 0)).isEqualTo(dead());
+        assertThat(generation.findCellAt(1, 0)).isEqualTo(dead());
     }
 }
