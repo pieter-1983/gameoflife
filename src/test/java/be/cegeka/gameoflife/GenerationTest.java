@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import static be.cegeka.gameoflife.Cell.dead;
 import static be.cegeka.gameoflife.Cell.live;
+import static be.cegeka.gameoflife.Position.pos;
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,7 +49,7 @@ public class GenerationTest {
     @Test
     public void findCellAt_NoCellAtPosition_ReturnsNull() throws Exception {
         Generation generationWithOneRow = Generation.of(asList(live(), live(), live()));
-        assertThat(generationWithOneRow.findCellAt(1, 0)).isNull();
+        assertThat(generationWithOneRow.findCellAt(pos(1, 0))).isNull();
     }
 
     @Test
@@ -58,7 +59,7 @@ public class GenerationTest {
                 , asList(dead(), live(), live())
                 , asList(live(), live(), live())
                 );
-        assertThat(generation.findCellAt(1, 0)).isEqualTo(dead());
+        assertThat(generation.findCellAt(pos(1, 0))).isEqualTo(dead());
     }
 
     @Test

@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static be.cegeka.gameoflife.Position.pos;
+
 public class Generation {
     private List<List<Cell>> cells;
 
@@ -24,9 +26,9 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(int x, int y) {
-        Cell cell = findCellAt(x, y);
+        Cell cell = findCellAt(pos(x, y));
         if (cell == null) return Collections.emptyList();
-        return findLiveNeighbours(Position.pos(x,y));
+        return findLiveNeighbours(pos(x,y));
     }
 
     private List<Cell> findLiveNeighbours(Position pos) {
@@ -39,22 +41,22 @@ public class Generation {
         int x = pos.x();
         int y = pos.y();
         return Stream.of(
-                findCellAt(x - 1, y - 1),
-                findCellAt(x - 1, y),
-                findCellAt(x - 1, y + 1),
-                findCellAt(x, y - 1),
-                findCellAt(x, y + 1),
-                findCellAt(x + 1, y - 1),
-                findCellAt(x + 1, y),
-                findCellAt(x + 1, y + 1)
+                findCellAt(pos(x - 1, y - 1)),
+                findCellAt(pos(x - 1, y)),
+                findCellAt(pos(x - 1, y + 1)),
+                findCellAt(pos(x, y - 1)),
+                findCellAt(pos(x, y + 1)),
+                findCellAt(pos(x + 1, y - 1)),
+                findCellAt(pos(x + 1, y)),
+                findCellAt(pos(x + 1, y + 1))
         )
         .filter(Objects::nonNull);
     }
 
-    Cell findCellAt(int x, int y) {
+    Cell findCellAt(Position pos) {
         Cell cell;
         try {
-            cell = this.cells.get(x).get(y);
+            cell = this.cells.get(pos.x()).get(pos.y());
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
