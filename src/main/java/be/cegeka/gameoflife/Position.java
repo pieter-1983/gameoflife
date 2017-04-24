@@ -2,10 +2,10 @@ package be.cegeka.gameoflife;
 
 import java.util.Objects;
 
-public class Position {
+public final class Position {
 
-    private final int x;
-    private final int y;
+    public final int x;
+    public final int y;
 
     private Position(int x, int y){
         this.x = x;
@@ -14,14 +14,6 @@ public class Position {
 
     public static Position pos(int x, int y){
         return new Position(x, y);
-    }
-
-    public int x() {
-        return x;
-    }
-
-    public int y() {
-        return y;
     }
 
     public Position left() {

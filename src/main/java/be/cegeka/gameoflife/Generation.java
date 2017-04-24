@@ -51,7 +51,7 @@ public class Generation {
     Cell cellAt(Position pos) {
         Cell cell;
         try {
-            cell = this.cells.get(pos.x()).get(pos.y());
+            cell = this.cells.get(pos.x).get(pos.y);
         } catch (IndexOutOfBoundsException e) {
             return null;
         }
