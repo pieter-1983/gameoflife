@@ -21,14 +21,8 @@ public class Generation {
     }
 
     public List<Cell> getLiveNeighbours(int x, int y) {
-        List<Cell> row;
-        Cell cell;
-        try {
-            row = this.cells.get(x);
-            cell = row.get(y);
-        } catch (IndexOutOfBoundsException e) {
-            return Collections.emptyList();
-        }
+        Cell cell = findNeighbour(x, y);
+        if (cell == null) return Collections.emptyList();
         // here we've identified that there is indeed a Cell at the given position
         // so let's start finding neighbours in all directions
         findNeighbour(x,y-1); //left neighbour
