@@ -5,12 +5,12 @@ import org.junit.Test;
 public class GenerationTest {
 
     @Test
-    public void getNeighbours_NoCellAtPosition_ReturnsEmptyList() throws Exception {
+    public void getLiveNeighbours_NoCellAtPosition_ReturnsEmptyList() throws Exception {
 
     }
 
     @Test
-    public void getNeighbours_CellAtPosition_ReturnsAllNeighbours() throws Exception {
+    public void getLiveNeighbours_CellAtPosition_ReturnsAllLiveNeighbours() throws Exception {
 
     }
 }
