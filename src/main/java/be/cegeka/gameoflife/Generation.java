@@ -3,6 +3,7 @@ package be.cegeka.gameoflife;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -47,6 +48,7 @@ public class Generation {
                 bottomLeftNeighbour,
                 bottomRightNeighbour
         )
+        .filter(Objects::nonNull)
         .filter(Cell::isAlive)
         .collect(Collectors.toList());
     }

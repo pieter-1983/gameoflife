@@ -37,6 +37,15 @@ public class GenerationTest {
     }
 
     @Test
+    public void getLiveNeighbours_CellAtPositionHasACoupleOfNonExistingNeighbours_ReturnsOnlyLiveNeighbours() throws Exception {
+        Generation generationWithOnlyLiveCells = Generation.of
+                ( asList(live(), live())
+                , asList(live(), live())
+                );
+        assertThat(generationWithOnlyLiveCells.getLiveNeighbours(1,1)).hasSize(3);
+    }
+
+    @Test
     public void findCellAt_NoCellAtPosition_ReturnsNull() throws Exception {
         Generation generationWithOneRow = Generation.of(asList(live(), live(), live()));
         assertThat(generationWithOneRow.findCellAt(1, 0)).isNull();
