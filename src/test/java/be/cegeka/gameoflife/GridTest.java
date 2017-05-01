@@ -17,17 +17,17 @@ public class GridTest {
 
     @Test
     public void testIfPopulateGrid_ReturnsFilledInGrid() throws Exception {
-        grid.populate(true, false, true,
-            false, false, true,
-            true, true, false);
-        Assertions.assertThat(grid.getGrid()[0][0]).isEqualTo(true);
-        Assertions.assertThat(grid.getGrid()[0][1]).isEqualTo(false);
-        Assertions.assertThat(grid.getGrid()[0][2]).isEqualTo(true);
-        Assertions.assertThat(grid.getGrid()[1][0]).isEqualTo(false);
-        Assertions.assertThat(grid.getGrid()[1][1]).isEqualTo(false);
-        Assertions.assertThat(grid.getGrid()[2][0]).isEqualTo(true);
-        Assertions.assertThat(grid.getGrid()[2][1]).isEqualTo(true);
-        Assertions.assertThat(grid.getGrid()[2][2]).isEqualTo(false);
+        grid.populate(new Cell(true), new Cell(false), new Cell(true),
+                      new Cell(false), new Cell(false), new Cell(true),
+                      new Cell(true), new Cell(true), new Cell(false));
+        Assertions.assertThat(grid.getGrid()[0][0].isAlive()).isEqualTo(true);
+        Assertions.assertThat(grid.getGrid()[0][1].isAlive()).isEqualTo(false);
+        Assertions.assertThat(grid.getGrid()[0][2].isAlive()).isEqualTo(true);
+        Assertions.assertThat(grid.getGrid()[1][0].isAlive()).isEqualTo(false);
+        Assertions.assertThat(grid.getGrid()[1][1].isAlive()).isEqualTo(false);
+        Assertions.assertThat(grid.getGrid()[2][0].isAlive()).isEqualTo(true);
+        Assertions.assertThat(grid.getGrid()[2][1].isAlive()).isEqualTo(true);
+        Assertions.assertThat(grid.getGrid()[2][2].isAlive()).isEqualTo(false);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)

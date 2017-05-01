@@ -1,19 +1,19 @@
 package be.cegeka.gameoflife;
 
 public class Grid {
-    private boolean[][] grid;
+    private Cell[][] grid;
     private int rowAndColumAmmount;
 
     public Grid(int rowAndColumAmmount) {
         this.rowAndColumAmmount = rowAndColumAmmount;
-        this.grid = new boolean[rowAndColumAmmount][rowAndColumAmmount];
+        this.grid = new Cell[rowAndColumAmmount][rowAndColumAmmount];
     }
 
-    public boolean[][] getGrid() {
+    public Cell[][] getGrid() {
         return grid;
     }
 
-    public void populate(boolean... cellStates) {
+    public void populate(Cell... cellStates) {
         int indexOfCellStates = 0;
         for (int row = 0; row < rowAndColumAmmount; row++) {
             for (int column = 0; column < rowAndColumAmmount; column++) {
@@ -24,5 +24,7 @@ public class Grid {
 
 
     }
+
+
 
 }
