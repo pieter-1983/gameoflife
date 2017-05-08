@@ -12,8 +12,7 @@ public class RulesTest {
 
     @Before
     public void setUp() throws Exception {
-        grid = new Grid(3);
-        grid.populate(new Cell(true), new Cell(false), new Cell(true),
+        grid = new Grid(3,new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
             new Cell(true), new Cell(true), new Cell(false));
         rules = new Rules();
@@ -23,9 +22,9 @@ public class RulesTest {
 
     @Test
     public void checkIfCellDiesInNextGenerationIfITHasFewerThan2LiveNeighbours() throws Exception {
-        Assertions.assertThat(rules.tick(grid).getGrid()[0][0]).isEqualTo(false);
-        Assertions.assertThat(rules.tick(grid).getGrid()[0][2]).isEqualTo(false);
-        Assertions.assertThat(rules.tick(grid).getGrid()[2][0]).isEqualTo(false);
+        Assertions.assertThat(rules.tick(grid).getGrid().get(0).get(0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(rules.tick(grid).getGrid().get(0).get(2).isAlive()).isEqualTo(false);
+        Assertions.assertThat(rules.tick(grid).getGrid().get(2).get(0).isAlive()).isEqualTo(false);
 
     }
 }
