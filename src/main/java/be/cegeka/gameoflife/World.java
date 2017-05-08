@@ -1,10 +1,10 @@
 package be.cegeka.gameoflife;
 
-public class Grid {
+public class World {
     private Cell[][] grid;
     private int ammountOfRowsAndColumns;
 
-    public Grid(int ammountOfRowsAndColumns) {
+    public World(int ammountOfRowsAndColumns) {
         this.ammountOfRowsAndColumns = ammountOfRowsAndColumns;
         this.grid = new Cell[ammountOfRowsAndColumns][ammountOfRowsAndColumns];
     }

@@ -1,8 +1,8 @@
 package be.cegeka.gameoflife;
 
 public class Rules {
-    public Grid tick(Grid grid) {
+    public World tick(World world) {
 
-        return grid;
+        return world;
     }
 }

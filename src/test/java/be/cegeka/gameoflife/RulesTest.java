@@ -6,14 +6,14 @@ import org.junit.Test;
 
 public class RulesTest {
 
-    private Grid grid;
+    private World world;
     private Rules rules;
 
 
     @Before
     public void setUp() throws Exception {
-        grid = new Grid(3);
-        grid.populate(new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3);
+        world.populate(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
             new Cell(true), new Cell(true), new Cell(false));
         rules = new Rules();
@@ -23,9 +23,9 @@ public class RulesTest {
 
     @Test
     public void checkIfCellDiesInNextGenerationIfITHasFewerThan2LiveNeighbours() throws Exception {
-        Assertions.assertThat(rules.tick(grid).getGrid()[0][0]).isEqualTo(false);
-        Assertions.assertThat(rules.tick(grid).getGrid()[0][2]).isEqualTo(false);
-        Assertions.assertThat(rules.tick(grid).getGrid()[2][0]).isEqualTo(false);
+        Assertions.assertThat(rules.tick(world).getGrid()[0][0]).isEqualTo(false);
+        Assertions.assertThat(rules.tick(world).getGrid()[0][2]).isEqualTo(false);
+        Assertions.assertThat(rules.tick(world).getGrid()[2][0]).isEqualTo(false);
 
     }
 }
