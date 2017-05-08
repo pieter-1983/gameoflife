@@ -3,11 +3,11 @@ package be.cegeka.gameoflife;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Grid {
+public class World {
     private List<List<Cell>> grid = new ArrayList<List<Cell>>();
     private int ammountOfRowsAndColumns;
 
-    public Grid(int ammountOfRowsAndColumns, Cell... cells) {
+    public World(int ammountOfRowsAndColumns, Cell... cells) {
         this.ammountOfRowsAndColumns = ammountOfRowsAndColumns;
         populateGrid(ammountOfRowsAndColumns, cells);
     }
