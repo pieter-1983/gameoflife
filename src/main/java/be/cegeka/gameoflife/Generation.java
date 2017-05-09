@@ -10,20 +10,20 @@ public class Generation {
 
     private World makeNewWorldByTheRules(World world) {
         List<List<Cell>> grid = world.getGrid();
-        int rowSize = grid.get(0).size();
-        int amountOfCells = rowSize * rowSize;
+        int listSize = grid.get(0).size();
+        int amountOfCells = listSize * listSize;
         Cell[] nextGenerationOfCells = new Cell[amountOfCells];
         int index = 0;
-        for (int row = 0; row < rowSize; row++) {
-            for (int column = 0; column < rowSize; column++) {
-                int numberfAliveNeighbours = world.getNumberOfAliveNeighbours(row, column);
-                Cell cell = grid.get(row).get(column);
+        for (int list = 0; list < listSize; list++) {
+            for (int listPosition = 0; listPosition < listSize; listPosition++) {
+                int numberfAliveNeighbours = world.getNumberOfAliveNeighbours(list, listPosition);
+                Cell cell = grid.get(list).get(listPosition);
                 Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberfAliveNeighbours));
                 nextGenerationOfCells[index] = nextGenerationCell;
                 index++;
             }
         }
-        return new World(rowSize, nextGenerationOfCells);
+        return new World(listSize, nextGenerationOfCells);
     }
 
     private boolean rulesForNextGeneration(Cell cell, int numberfAliveNeighbours) {
