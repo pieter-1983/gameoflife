@@ -19,7 +19,7 @@ public class WorldTest {
     }
 
     @Test
-    public void testIfPopulateGrid_ReturnsFilledInGrid() throws Exception {
+    public void worldgetGrid_ReturnsFilledInGrid() throws Exception {
 
         Assertions.assertThat(world.getGrid()[0][0].isAlive()).isEqualTo(true);
         Assertions.assertThat(world.getGrid()[0][1].isAlive()).isEqualTo(false);
@@ -32,17 +32,17 @@ public class WorldTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testIfInvalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
+    public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
         Assertions.assertThat(world.getGrid()[3][0]);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testIfInvalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
+    public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
         Assertions.assertThat(world.getGrid()[0][3]);
     }
 
     @Test
-    public void checkIfGetNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
+    public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,0)).isEqualTo(0);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,1)).isEqualTo(3);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,2)).isEqualTo(1);
@@ -55,11 +55,11 @@ public class WorldTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testIfgetNumberOfAliveNeighbours_ReturnsIndexOutOfBoundExceptionWhenCheckingNotExistingColumn() throws Exception {
+    public void getNumberOfAliveNeighbours_ReturnsIndexOutOfBoundExceptionWhenCheckingNotExistingColumn() throws Exception {
         Assertions.assertThat(world.getGrid()[0][3]);
 
     } @Test(expected = IndexOutOfBoundsException.class)
-    public void testIfgetNumberOfAliveNeighbours_ReturnsIndexOutOfBoundExceptionWhenCheckingNotExistingRow() throws Exception {
+    public void getNumberOfAliveNeighbours_ReturnsIndexOutOfBoundExceptionWhenCheckingNotExistingRow() throws Exception {
         Assertions.assertThat(world.getGrid()[3][0]);
 
     }
