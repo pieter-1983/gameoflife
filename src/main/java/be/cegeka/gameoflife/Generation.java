@@ -16,9 +16,9 @@ public class Generation {
         int index = 0;
         for (int list = 0; list < listSize; list++) {
             for (int listPosition = 0; listPosition < listSize; listPosition++) {
-                int numberfAliveNeighbours = world.getNumberOfAliveNeighbours(list, listPosition);
+                int numberOfAliveNeighbours = world.getNumberOfAliveNeighbours(list, listPosition);
                 Cell cell = grid.get(list).get(listPosition);
-                Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberfAliveNeighbours));
+                Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberOfAliveNeighbours));
                 nextGenerationOfCells[index] = nextGenerationCell;
                 index++;
             }
@@ -26,19 +26,35 @@ public class Generation {
         return new World(listSize, nextGenerationOfCells);
     }
 
-    private boolean rulesForNextGeneration(Cell cell, int numberfAliveNeighbours) {
-        if (cell.isAlive() && numberfAliveNeighbours < 2) {
+    private boolean rulesForNextGeneration(Cell cell, int numberOfAliveNeighbours) {
+        if (aLiveCellHasLessThanTwoNeighbours(cell, numberOfAliveNeighbours)) {
             return false;
         }
-        if (cell.isAlive() && (numberfAliveNeighbours > 1 && numberfAliveNeighbours < 4)) {
+        if (aLiveCellHasTwoOrThreeNeighbours(cell, numberOfAliveNeighbours)) {
             return true;
         }
-        if (cell.isAlive() && numberfAliveNeighbours > 3) {
+        if (aLiveCellHasMoreThanThreeNeighbours(cell, numberOfAliveNeighbours)) {
             return false;
         }
-        if (!cell.isAlive() && numberfAliveNeighbours == 3) {
+        if (aDeadCellHasThreeNeighbours(cell, numberOfAliveNeighbours)) {
             return true;
         }
         return false;
+    }
+
+    private boolean aDeadCellHasThreeNeighbours(Cell cell, int numberOfAliveNeighbours) {
+        return !cell.isAlive() && numberOfAliveNeighbours == 3;
+    }
+
+    private boolean aLiveCellHasMoreThanThreeNeighbours(Cell cell, int numberOfAliveNeighbours) {
+        return cell.isAlive() && numberOfAliveNeighbours > 3;
+    }
+
+    private boolean aLiveCellHasTwoOrThreeNeighbours(Cell cell, int numberOfAliveNeighbours) {
+        return cell.isAlive() && (numberOfAliveNeighbours > 1 && numberOfAliveNeighbours < 4);
+    }
+
+    private boolean aLiveCellHasLessThanTwoNeighbours(Cell cell, int numberOfAliveNeighbours) {
+        return cell.isAlive() && numberOfAliveNeighbours < 2;
     }
 }
