@@ -11,15 +11,16 @@ public class WorldTest {
 
     @Before
     public void setUp() throws Exception {
-        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
-            new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false));
 
 
     }
 
     @Test
-    public void testIfPopulateGrid_ReturnsFilledInGrid() throws Exception {
+    public void testIfWorldGetGrid_ReturnsFilledInGrid() throws Exception {
+        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false));
+
 
         Assertions.assertThat(world.getGrid().get(0).get(0).isAlive()).isEqualTo(true);
         Assertions.assertThat(world.getGrid().get(0).get(1).isAlive()).isEqualTo(false);
@@ -33,17 +34,29 @@ public class WorldTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testIfInvalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
+    public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
+        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false));
+
         Assertions.assertThat(world.getGrid().get(3));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testIfInvalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
+    public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
+        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false));
+
         Assertions.assertThat(world.getGrid().get(0).get(9));
     }
 
     @Test
-    public void checkIfGetNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
+    public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
+        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+                                                 new Cell(false), new Cell(false), new Cell(true),
+                                                 new Cell(true), new Cell(true), new Cell(false));
+
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,0)).isEqualTo(0);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,1)).isEqualTo(3);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,2)).isEqualTo(1);
