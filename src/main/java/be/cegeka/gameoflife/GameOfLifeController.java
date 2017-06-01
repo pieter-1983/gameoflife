@@ -21,6 +21,9 @@ public class GameOfLifeController {
     @RequestMapping(value = "/world", method = POST)
     @ResponseBody
     public List<List<Boolean>> getWorld(@RequestBody List<List<Boolean>> currentWorld) {
+        if (currentWorld.isEmpty()){
+            return currentWorld;
+        }
         World convertedWorld = createWorldFromNestedBooleanLists(currentWorld);
         List<List<Boolean>> nextWorld = generation.tick(convertedWorld);
         return nextWorld;
