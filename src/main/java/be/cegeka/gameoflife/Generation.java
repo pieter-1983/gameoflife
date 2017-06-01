@@ -1,11 +1,28 @@
 package be.cegeka.gameoflife;
 
+import javax.inject.Named;
+import java.util.ArrayList;
 import java.util.List;
-
+@Named
 public class Generation {
-    public World tick(World world) {
+    public List<List<Boolean>> tick(World world) {
         World newGeneration = makeNewWorldByTheRules(world);
-        return newGeneration;
+        List<List<Boolean>> returnWorld = convertWorldToNestedListsOfBooleans(newGeneration);
+        return returnWorld;
+    }
+
+    private List<List<Boolean>> convertWorldToNestedListsOfBooleans(World newGeneration) {
+        List<List<Boolean>> returnWorld = new ArrayList<List<Boolean>>();
+        int sizeOfList= newGeneration.getGrid().size();
+        for (int list = 0; list < sizeOfList; list++) {
+            List<Boolean> booleanList = new ArrayList<>();
+            for (int positionInList = 0; positionInList < sizeOfList; positionInList++) {
+                Boolean aBoolean = newGeneration.getGrid().get(list).get(positionInList).isAlive();
+                booleanList.add(aBoolean);
+            }
+            returnWorld.add(booleanList);
+        }
+        return returnWorld;
     }
 
     private World makeNewWorldByTheRules(World world) {
