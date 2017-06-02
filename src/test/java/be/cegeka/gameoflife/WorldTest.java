@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class WorldTest {
 
@@ -17,9 +20,9 @@ public class WorldTest {
 
     @Test
     public void testIfWorldGetGrid_ReturnsFilledInGrid() throws Exception {
-        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false));
+            new Cell(true), new Cell(true), new Cell(false))));
 
 
         Assertions.assertThat(world.getGrid().get(0).get(0).isAlive()).isEqualTo(true);
@@ -35,28 +38,28 @@ public class WorldTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
-        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false));
+            new Cell(true), new Cell(true), new Cell(false))));
 
         Assertions.assertThat(world.getGrid().get(3));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
-        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false));
+            new Cell(true), new Cell(true), new Cell(false))));
 
         Assertions.assertThat(world.getGrid().get(0).get(9));
     }
 
     @Test
     public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
-        world = new World(3,new Cell(true), new Cell(false), new Cell(true),
-                                                 new Cell(false), new Cell(false), new Cell(true),
-                                                 new Cell(true), new Cell(true), new Cell(false));
-
+        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false))));
+        
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,0)).isEqualTo(0);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,1)).isEqualTo(3);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,2)).isEqualTo(1);

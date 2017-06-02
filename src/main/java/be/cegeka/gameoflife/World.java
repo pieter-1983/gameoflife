@@ -7,17 +7,17 @@ public class World {
     private List<List<Cell>> grid = new ArrayList<List<Cell>>();
     private int amountOfListsAndSizeOfThem;
 
-    public World(int amountOfListsAndSizeOfThem, Cell... cells) {
+    public World(int amountOfListsAndSizeOfThem, ArrayList<Cell> cells) {
         this.amountOfListsAndSizeOfThem = amountOfListsAndSizeOfThem;
         populateGrid(amountOfListsAndSizeOfThem, cells);
     }
 
-    private void populateGrid(int amountOfListsAndSizeOfThem, Cell[] cells) {
+    private void populateGrid(int amountOfListsAndSizeOfThem, ArrayList<Cell> cells) {
         int index = 0;
-        for (int list = 0; list < amountOfListsAndSizeOfThem; list++) {
+        for (int rows = 0; rows < amountOfListsAndSizeOfThem; rows++) {
             ArrayList<Cell> cellList = new ArrayList<>();
-            for (int positionInList = 0; positionInList < amountOfListsAndSizeOfThem; positionInList++) {
-                cellList.add(cells[index]);
+            for (int column = 0; column < amountOfListsAndSizeOfThem; column++) {
+                cellList.add(cells.get(index));
                 index++;
             }
             grid.add(cellList);
@@ -28,30 +28,30 @@ public class World {
         return grid;
     }
 
-    public int getNumberOfAliveNeighbours(int list, int positionInList) {
+    public int getNumberOfAliveNeighbours(int row, int column) {
         int numberOfAliveNeighbours = 0;
-        if (upperLeftCellExistsAndIsAlive(list, positionInList)) {
+        if (upperLeftCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (upperCellExistsAndIsAlive(list, positionInList)) {
+        if (upperCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (upperRightCellExistsAndIsAlive(list, positionInList)) {
+        if (upperRightCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (leftCellExistsAndIsAlive(list, positionInList)) {
+        if (leftCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (rightCellExistsAndIsAlive(list, positionInList)) {
+        if (rightCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (bottomLeftCellExistsAndIsAlive(list, positionInList)) {
+        if (bottomLeftCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (bottomCellExistsAndIsAlive(list, positionInList)) {
+        if (bottomCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
-        if (bottomRightCellExistsAndIsAlive(list, positionInList)) {
+        if (bottomRightCellExistsAndIsAlive(row, column)) {
             numberOfAliveNeighbours += 1;
         }
         return numberOfAliveNeighbours;

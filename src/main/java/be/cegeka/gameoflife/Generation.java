@@ -30,14 +30,14 @@ public class Generation {
         List<List<Cell>> grid = world.getGrid();
         int listSize = grid.get(0).size();
         int amountOfCells = listSize * listSize;
-        Cell[] nextGenerationOfCells = new Cell[amountOfCells];
+        ArrayList<Cell> nextGenerationOfCells = new ArrayList<>();
         int index = 0;
         for (int list = 0; list < listSize; list++) {
             for (int listPosition = 0; listPosition < listSize; listPosition++) {
                 int numberOfAliveNeighbours = world.getNumberOfAliveNeighbours(list, listPosition);
                 Cell cell = grid.get(list).get(listPosition);
                 Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberOfAliveNeighbours));
-                nextGenerationOfCells[index] = nextGenerationCell;
+                nextGenerationOfCells.add(nextGenerationCell);
                 index++;
             }
         }
@@ -77,20 +77,18 @@ public class Generation {
     }
 
     World convertNestedListsOfBooleansToWorld(List<List<Boolean>> currentWorld) {
-        Cell[] cells = createCellArrayFromNestedBooleanLists(currentWorld);
+       ArrayList<Cell> cells = createCellArrayFromNestedBooleanLists(currentWorld);
         return new World(currentWorld.size(), cells);
     }
 
-    private Cell[] createCellArrayFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
-        Cell[] cells = new Cell[currentWorld.size() * currentWorld.size()];
-        int index = 0;
+    private ArrayList<Cell> createCellArrayFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
+        ArrayList<Cell> cells = new ArrayList<>();
         for (List<Boolean> booleanList :
             currentWorld) {
             for (Boolean aboolean :
                 booleanList) {
                 Cell cell = new Cell(aboolean);
-                cells[index] = cell;
-                index++;
+                cells.add(cell);
             }
         }
         return cells;
