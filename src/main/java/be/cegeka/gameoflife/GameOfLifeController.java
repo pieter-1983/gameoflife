@@ -24,29 +24,8 @@ public class GameOfLifeController {
         if (currentWorld.isEmpty()){
             return currentWorld;
         }
-        World convertedWorld = createWorldFromNestedBooleanLists(currentWorld);
-        List<List<Boolean>> nextWorld = generation.tick(convertedWorld);
+        List<List<Boolean>> nextWorld = generation.tick(currentWorld);
         return nextWorld;
-    }
-
-    private World createWorldFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
-        Cell[] cells = createCellArrayFromNestedBooleanLists(currentWorld);
-        return new World(currentWorld.size(), cells);
-    }
-
-    private Cell[] createCellArrayFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
-        Cell[] cells = new Cell[currentWorld.size() * currentWorld.size()];
-        int index = 0;
-        for (List<Boolean> booleanList :
-            currentWorld) {
-            for (Boolean aboolean :
-                booleanList) {
-                Cell cell = new Cell(aboolean);
-                cells[index] = cell;
-                index++;
-            }
-        }
-        return cells;
     }
 
 }

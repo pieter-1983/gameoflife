@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 @Named
 public class Generation {
-    public List<List<Boolean>> tick(World world) {
-        World newGeneration = makeNewWorldByTheRules(world);
-        List<List<Boolean>> returnWorld = convertWorldToNestedListsOfBooleans(newGeneration);
+    public List<List<Boolean>> tick(List<List<Boolean>> nestedListsOfBooleans) {
+        World convertedWorld = convertNestedListsOfBooleansToWorld(nestedListsOfBooleans);
+        World nextWorld = makeNewWorldByTheRules(convertedWorld);
+        List<List<Boolean>> returnWorld = convertWorldToNestedListsOfBooleans(nextWorld);
         return returnWorld;
     }
 
@@ -73,5 +74,25 @@ public class Generation {
 
     private boolean aLiveCellHasLessThanTwoNeighbours(Cell cell, int numberOfAliveNeighbours) {
         return cell.isAlive() && numberOfAliveNeighbours < 2;
+    }
+
+    World convertNestedListsOfBooleansToWorld(List<List<Boolean>> currentWorld) {
+        Cell[] cells = createCellArrayFromNestedBooleanLists(currentWorld);
+        return new World(currentWorld.size(), cells);
+    }
+
+    private Cell[] createCellArrayFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
+        Cell[] cells = new Cell[currentWorld.size() * currentWorld.size()];
+        int index = 0;
+        for (List<Boolean> booleanList :
+            currentWorld) {
+            for (Boolean aboolean :
+                booleanList) {
+                Cell cell = new Cell(aboolean);
+                cells[index] = cell;
+                index++;
+            }
+        }
+        return cells;
     }
 }
