@@ -27,5 +27,4 @@ public class GameOfLifeController {
         List<List<Boolean>> nextWorld = generation.tick(currentWorld);
         return nextWorld;
     }
-
 }

@@ -65,7 +65,7 @@ public class GenerationTest {
     }
 
     @Test
-    public void tick_WhenGivenAWorld_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
+    public void tick_WhenGivenASquareWorld_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
         world = new ArrayList<List<Boolean>>();
         world.add(new ArrayList(Arrays.asList(true, true, false)));
         world.add(new ArrayList(Arrays.asList(false, true, true)));
@@ -104,12 +104,28 @@ public class GenerationTest {
     }
 
     @Test
-    public void tick_WhenGivenWorldWith2RowsAnd1Column_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
+    public void tick_WhenGivenWorldWith4RowsAnd1Column_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
         world = new ArrayList<List<Boolean>>();
+        world.add(new ArrayList(Arrays.asList(true)));
+        world.add(new ArrayList(Arrays.asList(false)));
         world.add(new ArrayList(Arrays.asList(true)));
         world.add(new ArrayList(Arrays.asList(false)));
 
         Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(false);
         Assertions.assertThat(generation.tick(world).get(1).get(0)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).get(2).get(0)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).get(3).get(0)).isEqualTo(false);
+    }
+
+    @Test
+    public void tick_WhenGivenWorldWith1RowsAnd4Columns_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
+        world = new ArrayList<List<Boolean>>();
+        world.add(new ArrayList(Arrays.asList(true,true,true,false)));
+
+
+        Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).get(0).get(2)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).get(0).get(3)).isEqualTo(false);
     }
 }
