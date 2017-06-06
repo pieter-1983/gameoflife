@@ -3,6 +3,7 @@ package be.cegeka.gameoflife;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+
 @Named
 public class Generation {
     public List<List<Boolean>> tick(List<List<Boolean>> nestedListsOfBooleans) {
@@ -14,11 +15,12 @@ public class Generation {
 
     private List<List<Boolean>> convertWorldToNestedListsOfBooleans(World newGeneration) {
         List<List<Boolean>> returnWorld = new ArrayList<List<Boolean>>();
-        int sizeOfList= newGeneration.getGrid().size();
-        for (int list = 0; list < sizeOfList; list++) {
+        int rows = newGeneration.getGrid().size();
+        int columns = newGeneration.getGrid().get(0).size();
+        for (int row = 0; row < rows; row++) {
             List<Boolean> booleanList = new ArrayList<>();
-            for (int positionInList = 0; positionInList < sizeOfList; positionInList++) {
-                Boolean aBoolean = newGeneration.getGrid().get(list).get(positionInList).isAlive();
+            for (int colum = 0; colum < columns; colum++) {
+                Boolean aBoolean = newGeneration.getGrid().get(row).get(colum).isAlive();
                 booleanList.add(aBoolean);
             }
             returnWorld.add(booleanList);
@@ -28,20 +30,21 @@ public class Generation {
 
     private World makeNewWorldByTheRules(World world) {
         List<List<Cell>> grid = world.getGrid();
-        int listSize = grid.get(0).size();
-        int amountOfCells = listSize * listSize;
+        int rows= grid.size();
+        int columns = grid.get(0).size();
+        int amountOfCells = columns * columns;
         ArrayList<Cell> nextGenerationOfCells = new ArrayList<>();
         int index = 0;
-        for (int list = 0; list < listSize; list++) {
-            for (int listPosition = 0; listPosition < listSize; listPosition++) {
-                int numberOfAliveNeighbours = world.getNumberOfAliveNeighbours(list, listPosition);
-                Cell cell = grid.get(list).get(listPosition);
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
+                int numberOfAliveNeighbours = world.getNumberOfAliveNeighbours(row, column);
+                Cell cell = grid.get(row).get(column);
                 Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberOfAliveNeighbours));
                 nextGenerationOfCells.add(nextGenerationCell);
                 index++;
             }
         }
-        return new World(listSize, nextGenerationOfCells);
+        return new World(rows, columns, nextGenerationOfCells);
     }
 
     private boolean rulesForNextGeneration(Cell cell, int numberOfAliveNeighbours) {
@@ -77,11 +80,11 @@ public class Generation {
     }
 
     World convertNestedListsOfBooleansToWorld(List<List<Boolean>> currentWorld) {
-       ArrayList<Cell> cells = createCellArrayFromNestedBooleanLists(currentWorld);
-        return new World(currentWorld.size(), cells);
+        ArrayList<Cell> cells = createCellListFromNestedBooleanLists(currentWorld);
+        return new World(currentWorld.size(), currentWorld.get(0).size(), cells);
     }
 
-    private ArrayList<Cell> createCellArrayFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
+    private ArrayList<Cell> createCellListFromNestedBooleanLists(List<List<Boolean>> currentWorld) {
         ArrayList<Cell> cells = new ArrayList<>();
         for (List<Boolean> booleanList :
             currentWorld) {

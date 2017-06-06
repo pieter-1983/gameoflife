@@ -20,7 +20,7 @@ public class WorldTest {
 
     @Test
     public void testIfWorldGetGrid_ReturnsFilledInGrid() throws Exception {
-        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
             new Cell(true), new Cell(true), new Cell(false))));
 
@@ -38,7 +38,7 @@ public class WorldTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
-        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
             new Cell(true), new Cell(true), new Cell(false))));
 
@@ -47,7 +47,7 @@ public class WorldTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
-        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
             new Cell(true), new Cell(true), new Cell(false))));
 
@@ -56,10 +56,10 @@ public class WorldTest {
 
     @Test
     public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
-        world = new World(3,new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
             new Cell(false), new Cell(false), new Cell(true),
             new Cell(true), new Cell(true), new Cell(false))));
-        
+
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,0)).isEqualTo(0);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,1)).isEqualTo(3);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,2)).isEqualTo(1);

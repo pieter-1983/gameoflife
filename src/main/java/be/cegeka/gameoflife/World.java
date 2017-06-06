@@ -5,18 +5,20 @@ import java.util.List;
 
 public class World {
     private List<List<Cell>> grid = new ArrayList<List<Cell>>();
-    private int amountOfListsAndSizeOfThem;
+    private int rows;
+    private int columns;
 
-    public World(int amountOfListsAndSizeOfThem, ArrayList<Cell> cells) {
-        this.amountOfListsAndSizeOfThem = amountOfListsAndSizeOfThem;
-        populateGrid(amountOfListsAndSizeOfThem, cells);
+    public World(int rows, int columns, ArrayList<Cell> cells) {
+        this.rows = rows;
+        this.columns=columns;
+        populateGrid(rows, cells);
     }
 
     private void populateGrid(int amountOfListsAndSizeOfThem, ArrayList<Cell> cells) {
         int index = 0;
-        for (int rows = 0; rows < amountOfListsAndSizeOfThem; rows++) {
+        for (int row = 0; row < rows; row++) {
             ArrayList<Cell> cellList = new ArrayList<>();
-            for (int column = 0; column < amountOfListsAndSizeOfThem; column++) {
+            for (int column = 0; column < columns; column++) {
                 cellList.add(cells.get(index));
                 index++;
             }
@@ -57,35 +59,35 @@ public class World {
         return numberOfAliveNeighbours;
     }
 
-    private boolean bottomRightCellExistsAndIsAlive(int list, int positionInList) {
-        return list != amountOfListsAndSizeOfThem - 1 && positionInList != amountOfListsAndSizeOfThem - 1 && getGrid().get(list + 1).get(positionInList + 1).isAlive();
+    private boolean bottomRightCellExistsAndIsAlive(int row, int column) {
+        return row != rows - 1 && column != columns - 1 && getGrid().get(row + 1).get(column + 1).isAlive();
     }
 
-    private boolean bottomCellExistsAndIsAlive(int list, int positionInList) {
-        return list != amountOfListsAndSizeOfThem - 1 && getGrid().get(list + 1).get(positionInList).isAlive();
+    private boolean bottomCellExistsAndIsAlive(int row, int column) {
+        return row != rows - 1 && getGrid().get(row + 1).get(column).isAlive();
     }
 
-    private boolean bottomLeftCellExistsAndIsAlive(int list, int positionInList) {
-        return positionInList > 0 && list != amountOfListsAndSizeOfThem - 1 && getGrid().get(list + 1).get(positionInList - 1).isAlive();
+    private boolean bottomLeftCellExistsAndIsAlive(int row, int column) {
+        return column > 0 && row != rows - 1 && getGrid().get(row + 1).get(column - 1).isAlive();
     }
 
-    private boolean rightCellExistsAndIsAlive(int list, int positionInList) {
-        return positionInList != amountOfListsAndSizeOfThem - 1 && getGrid().get(list).get(positionInList + 1).isAlive();
+    private boolean rightCellExistsAndIsAlive(int row, int column) {
+        return column != columns - 1 && getGrid().get(row).get(column + 1).isAlive();
     }
 
-    private boolean leftCellExistsAndIsAlive(int list, int positionInList) {
-        return positionInList > 0 && getGrid().get(list).get(positionInList - 1).isAlive();
+    private boolean leftCellExistsAndIsAlive(int row, int column) {
+        return column > 0 && getGrid().get(row).get(column - 1).isAlive();
     }
 
-    private boolean upperRightCellExistsAndIsAlive(int list, int positionInList) {
-        return list > 0 && positionInList != amountOfListsAndSizeOfThem - 1 && getGrid().get(list - 1).get(positionInList + 1).isAlive();
+    private boolean upperRightCellExistsAndIsAlive(int row, int column) {
+        return row > 0 && column != columns - 1 && getGrid().get(row - 1).get(column + 1).isAlive();
     }
 
-    private boolean upperCellExistsAndIsAlive(int list, int positionInList) {
-        return list > 0 && getGrid().get(list - 1).get(positionInList).isAlive();
+    private boolean upperCellExistsAndIsAlive(int row, int column) {
+        return row > 0 && getGrid().get(row - 1).get(column).isAlive();
     }
 
-    private boolean upperLeftCellExistsAndIsAlive(int list, int positionInList) {
-        return list > 0 && positionInList > 0 && getGrid().get(list - 1).get(positionInList - 1).isAlive();
+    private boolean upperLeftCellExistsAndIsAlive(int row, int column) {
+        return row > 0 && column > 0 && getGrid().get(row - 1).get(column - 1).isAlive();
     }
 }
