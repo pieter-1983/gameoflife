@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 
 public class WorldTest {
 
@@ -11,38 +14,52 @@ public class WorldTest {
 
     @Before
     public void setUp() throws Exception {
-        world = new World(3);
-        world.populate(new Cell(true), new Cell(false), new Cell(true),
-                     new Cell(false), new Cell(false), new Cell(true),
-                     new Cell(true), new Cell(true), new Cell(false));
+
 
     }
 
     @Test
-    public void worldgetGrid_ReturnsFilledInGrid() throws Exception {
+    public void testIfWorldGetGrid_ReturnsFilledInGrid() throws Exception {
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false))));
 
-        Assertions.assertThat(world.getGrid()[0][0].isAlive()).isEqualTo(true);
-        Assertions.assertThat(world.getGrid()[0][1].isAlive()).isEqualTo(false);
-        Assertions.assertThat(world.getGrid()[0][2].isAlive()).isEqualTo(true);
-        Assertions.assertThat(world.getGrid()[1][0].isAlive()).isEqualTo(false);
-        Assertions.assertThat(world.getGrid()[1][1].isAlive()).isEqualTo(false);
-        Assertions.assertThat(world.getGrid()[2][0].isAlive()).isEqualTo(true);
-        Assertions.assertThat(world.getGrid()[2][1].isAlive()).isEqualTo(true);
-        Assertions.assertThat(world.getGrid()[2][2].isAlive()).isEqualTo(false);
+
+        Assertions.assertThat(world.getGrid().get(0).get(0).isAlive()).isEqualTo(true);
+        Assertions.assertThat(world.getGrid().get(0).get(1).isAlive()).isEqualTo(false);
+        Assertions.assertThat(world.getGrid().get(0).get(2).isAlive()).isEqualTo(true);
+        Assertions.assertThat(world.getGrid().get(1).get(0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(world.getGrid().get(1).get(1).isAlive()).isEqualTo(false);
+        Assertions.assertThat(world.getGrid().get(1).get(2).isAlive()).isEqualTo(true);
+        Assertions.assertThat(world.getGrid().get(2).get(0).isAlive()).isEqualTo(true);
+        Assertions.assertThat(world.getGrid().get(2).get(1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(world.getGrid().get(2).get(2).isAlive()).isEqualTo(false);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
-        Assertions.assertThat(world.getGrid()[3][0]);
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false))));
+
+        Assertions.assertThat(world.getGrid().get(3));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
-        Assertions.assertThat(world.getGrid()[0][3]);
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false))));
+
+        Assertions.assertThat(world.getGrid().get(0).get(9));
     }
 
     @Test
     public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
+        world = new World(3, 3, new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
+            new Cell(false), new Cell(false), new Cell(true),
+            new Cell(true), new Cell(true), new Cell(false))));
+
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,0)).isEqualTo(0);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,1)).isEqualTo(3);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0,2)).isEqualTo(1);
@@ -54,13 +71,5 @@ public class WorldTest {
         Assertions.assertThat(world.getNumberOfAliveNeighbours(2,2)).isEqualTo(2);
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void getNumberOfAliveNeighbours_ReturnsIndexOutOfBoundExceptionWhenCheckingNotExistingColumn() throws Exception {
-        Assertions.assertThat(world.getGrid()[0][3]);
 
-    } @Test(expected = IndexOutOfBoundsException.class)
-    public void getNumberOfAliveNeighbours_ReturnsIndexOutOfBoundExceptionWhenCheckingNotExistingRow() throws Exception {
-        Assertions.assertThat(world.getGrid()[3][0]);
-
-    }
 }
