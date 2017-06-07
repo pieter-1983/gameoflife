@@ -122,7 +122,6 @@ public class GenerationTest {
         world = new ArrayList<List<Boolean>>();
         world.add(new ArrayList(Arrays.asList(true,true,true,false)));
 
-
         Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(false);
         Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(true);
         Assertions.assertThat(generation.tick(world).get(0).get(2)).isEqualTo(false);

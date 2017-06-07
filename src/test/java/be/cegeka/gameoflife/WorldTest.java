@@ -14,16 +14,14 @@ public class WorldTest {
 
     @Before
     public void setUp() throws Exception {
-
-
     }
 
     @Test
     public void testIfWorldGetGrid_ReturnsFilledInGrid() throws Exception {
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
-            new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
-
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
         Assertions.assertThat(world.getGrid().get(0).get(0).isAlive()).isEqualTo(true);
         Assertions.assertThat(world.getGrid().get(0).get(1).isAlive()).isEqualTo(false);
@@ -38,27 +36,30 @@ public class WorldTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
-            new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
         Assertions.assertThat(world.getGrid().get(3));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
-            new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
         Assertions.assertThat(world.getGrid().get(0).get(9));
     }
 
     @Test
     public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
-            new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0, 0)).isEqualTo(0);
         Assertions.assertThat(world.getNumberOfAliveNeighbours(0, 1)).isEqualTo(3);
@@ -73,9 +74,10 @@ public class WorldTest {
 
     @Test
     public void getCell_returnsTheSpecifiedCell() throws Exception {
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList(new Cell(true), new Cell(false), new Cell(true),
-            new Cell(false), new Cell(false), new Cell(true),
-            new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
         Assertions.assertThat(world.getCell(1, 2)).isEqualToComparingFieldByField(new Cell(true));
     }

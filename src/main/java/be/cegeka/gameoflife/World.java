@@ -60,35 +60,35 @@ public class World {
     }
 
     private boolean upperLeftCellExistsAndIsAlive(int row, int column) {
-        return row > 0 && column > 0 && getGrid().get(row - 1).get(column - 1).isAlive();
+        return row > 0 && column > 0 && getCell(row - 1,column-1).isAlive();
     }
 
     private boolean upperCellExistsAndIsAlive(int row, int column) {
-        return row > 0 && getGrid().get(row - 1).get(column).isAlive();
+        return row > 0 && getCell(row - 1,column).isAlive();
     }
 
     private boolean upperRightCellExistsAndIsAlive(int row, int column) {
-        return row > 0 && column != numberOfColumns - 1 && getGrid().get(row - 1).get(column + 1).isAlive();
+        return row > 0 && column != numberOfColumns - 1 && getCell(row-1,column+1).isAlive();
     }
 
     private boolean leftCellExistsAndIsAlive(int row, int column) {
-        return column > 0 && getGrid().get(row).get(column - 1).isAlive();
+        return column > 0 && getCell(row,column-1).isAlive();
     }
 
     private boolean rightCellExistsAndIsAlive(int row, int column) {
-        return column != numberOfColumns - 1 && getGrid().get(row).get(column + 1).isAlive();
+        return column != numberOfColumns - 1 && getCell(row,column+1).isAlive();
     }
 
     private boolean bottomLeftCellExistsAndIsAlive(int row, int column) {
-        return column > 0 && row != numberOfRows - 1 && getGrid().get(row + 1).get(column - 1).isAlive();
+        return column > 0 && row != numberOfRows - 1 && getCell(row + 1,column-1).isAlive();
     }
 
     private boolean bottomCellExistsAndIsAlive(int row, int column) {
-        return row != numberOfRows - 1 && getGrid().get(row + 1).get(column).isAlive();
+        return row != numberOfRows - 1 && getCell(row + 1,column).isAlive();
     }
 
     private boolean bottomRightCellExistsAndIsAlive(int row, int column) {
-        return row != numberOfRows - 1 && column != numberOfColumns - 1 && getGrid().get(row + 1).get(column + 1).isAlive();
+        return row != numberOfRows - 1 && column != numberOfColumns - 1 && getCell(row + 1,column+1).isAlive();
     }
 
     public Cell getCell(int row, int column) {
