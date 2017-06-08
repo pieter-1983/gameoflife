@@ -30,66 +30,6 @@ public class World {
         return grid;
     }
 
-    public int getNumberOfAliveNeighbours(int row, int column) {
-        int numberOfAliveNeighbours = 0;
-        if (upperLeftCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (upperCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (upperRightCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (leftCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (rightCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (bottomLeftCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (bottomCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        if (bottomRightCellExistsAndIsAlive(row, column)) {
-            numberOfAliveNeighbours += 1;
-        }
-        return numberOfAliveNeighbours;
-    }
-
-    private boolean upperLeftCellExistsAndIsAlive(int row, int column) {
-        return row > 0 && column > 0 && getCell(row - 1,column-1).isAlive();
-    }
-
-    private boolean upperCellExistsAndIsAlive(int row, int column) {
-        return row > 0 && getCell(row - 1,column).isAlive();
-    }
-
-    private boolean upperRightCellExistsAndIsAlive(int row, int column) {
-        return row > 0 && column != numberOfColumns - 1 && getCell(row-1,column+1).isAlive();
-    }
-
-    private boolean leftCellExistsAndIsAlive(int row, int column) {
-        return column > 0 && getCell(row,column-1).isAlive();
-    }
-
-    private boolean rightCellExistsAndIsAlive(int row, int column) {
-        return column != numberOfColumns - 1 && getCell(row,column+1).isAlive();
-    }
-
-    private boolean bottomLeftCellExistsAndIsAlive(int row, int column) {
-        return column > 0 && row != numberOfRows - 1 && getCell(row + 1,column-1).isAlive();
-    }
-
-    private boolean bottomCellExistsAndIsAlive(int row, int column) {
-        return row != numberOfRows - 1 && getCell(row + 1,column).isAlive();
-    }
-
-    private boolean bottomRightCellExistsAndIsAlive(int row, int column) {
-        return row != numberOfRows - 1 && column != numberOfColumns - 1 && getCell(row + 1,column+1).isAlive();
-    }
 
     public Cell getCell(int row, int column) {
         return grid.get(row).get(column);

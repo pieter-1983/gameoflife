@@ -11,7 +11,9 @@ public class Mapper {
         ArrayList<Cell> cells = new ArrayList<>();
         for (List<Boolean> booleanList : booleanLists) {
             for (Boolean aboolean : booleanList) {
-                Cell cell = new Cell(aboolean);
+                int row = booleanLists.indexOf(booleanList);
+                int column = booleanList.indexOf(aboolean);
+                Cell cell = new Cell(aboolean, row, column);
                 cells.add(cell);
             }
         }

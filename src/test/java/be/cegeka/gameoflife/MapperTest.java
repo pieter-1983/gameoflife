@@ -1,20 +1,10 @@
 package be.cegeka.gameoflife;
-
-import com.sun.org.apache.xerces.internal.util.PropertyState;
 import org.assertj.core.api.Assertions;
-import org.hamcrest.collection.IsIterableContainingInOrder;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.core.Every.everyItem;
-import static org.junit.Assert.*;
 
 public class MapperTest {
 
@@ -36,9 +26,10 @@ public class MapperTest {
         booleanLists.add(new ArrayList(Arrays.asList(true, true, false)));
 
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
+
         Assertions.assertThat(mapper.convertNestedListsOfBooleansToWorld(booleanLists)).isEqualTo(world);
 
     }
@@ -51,9 +42,10 @@ public class MapperTest {
         booleanLists.add(new ArrayList(Arrays.asList(true, true, false)));
 
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
+
         Assertions.assertThat(mapper.convertWorldToNestedListsOfBooleans(world)).isEqualTo(booleanLists);
 
     }

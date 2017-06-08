@@ -17,9 +17,9 @@ public class Generation {
         ArrayList<Cell> nextGenerationOfCells = new ArrayList<>();
         for (int row = 0; row < rows; row++) {
             for (int column = 0; column < columns; column++) {
-                int numberOfAliveNeighbours = world.getNumberOfAliveNeighbours(row, column);
                 Cell cell = world.getCell(row, column);
-                Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberOfAliveNeighbours));
+                int numberOfAliveNeighbours = cell.getNumberOfAliveNeighbours(world);
+                Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberOfAliveNeighbours), row, column);
                 nextGenerationOfCells.add(nextGenerationCell);
             }
         }

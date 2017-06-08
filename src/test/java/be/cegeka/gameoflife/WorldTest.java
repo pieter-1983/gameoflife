@@ -19,9 +19,9 @@ public class WorldTest {
     @Test
     public void testIfWorldGetGrid_ReturnsFilledInGrid() throws Exception {
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
 
         Assertions.assertThat(world.getGrid().get(0).get(0).isAlive()).isEqualTo(true);
         Assertions.assertThat(world.getGrid().get(0).get(1).isAlive()).isEqualTo(false);
@@ -37,9 +37,9 @@ public class WorldTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridRow_ReturnsIndexOutOfBoundException() throws Exception {
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
 
         Assertions.assertThat(world.getGrid().get(3));
     }
@@ -47,38 +47,40 @@ public class WorldTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void invalidGridColumn_ReturnsIndexOutOfBoundException() throws Exception {
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
 
-        Assertions.assertThat(world.getGrid().get(0).get(9));
+        Assertions.assertThat(world.getGrid().get(0).get(3));
     }
 
     @Test
     public void getNumberOfAliveNeighbours_ReturnsTheAmmountOfAliveNeighbours() throws Exception {
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
 
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(0, 0)).isEqualTo(0);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(0, 1)).isEqualTo(3);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(0, 2)).isEqualTo(1);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(1, 0)).isEqualTo(3);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(1, 1)).isEqualTo(5);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(1, 2)).isEqualTo(2);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(2, 0)).isEqualTo(1);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(2, 1)).isEqualTo(2);
-        Assertions.assertThat(world.getNumberOfAliveNeighbours(2, 2)).isEqualTo(2);
+
+        Assertions.assertThat(world.getCell(0, 0).getNumberOfAliveNeighbours(world)).isEqualTo(0);
+        Assertions.assertThat(world.getCell(0, 1).getNumberOfAliveNeighbours(world)).isEqualTo(3);
+        Assertions.assertThat(world.getCell(0, 2).getNumberOfAliveNeighbours(world)).isEqualTo(1);
+        Assertions.assertThat(world.getCell(1, 0).getNumberOfAliveNeighbours(world)).isEqualTo(3);
+        Assertions.assertThat(world.getCell(1, 1).getNumberOfAliveNeighbours(world)).isEqualTo(5);
+        Assertions.assertThat(world.getCell(1, 2).getNumberOfAliveNeighbours(world)).isEqualTo(2);
+        Assertions.assertThat(world.getCell(2, 0).getNumberOfAliveNeighbours(world)).isEqualTo(1);
+        Assertions.assertThat(world.getCell(2, 1).getNumberOfAliveNeighbours(world)).isEqualTo(2);
+        Assertions.assertThat(world.getCell(2, 2).getNumberOfAliveNeighbours(world)).isEqualTo(2);
     }
 
     @Test
     public void getCell_returnsTheSpecifiedCell() throws Exception {
         world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
-            (new Cell(true), new Cell(false), new Cell(true),
-                new Cell(false), new Cell(false), new Cell(true),
-                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
+            (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
+                new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
+                new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
 
-        Assertions.assertThat(world.getCell(1, 2)).isEqualToComparingFieldByField(new Cell(true));
+
+        Assertions.assertThat(world.getCell(1, 2)).isEqualToComparingFieldByField(new Cell(true,1,2));
     }
 }
