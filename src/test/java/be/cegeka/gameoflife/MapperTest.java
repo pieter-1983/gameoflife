@@ -25,7 +25,7 @@ public class MapperTest {
         booleanLists.add(new ArrayList(Arrays.asList(false, false, true)));
         booleanLists.add(new ArrayList(Arrays.asList(true, true, false)));
 
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+        world = new World.WorldBuilder().withNumberOfRows(3).withNumberColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
             (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
                 new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
                 new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();
@@ -41,7 +41,7 @@ public class MapperTest {
         booleanLists.add(new ArrayList(Arrays.asList(false, false, true)));
         booleanLists.add(new ArrayList(Arrays.asList(true, true, false)));
 
-        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+        world = new World.WorldBuilder().withNumberOfRows(3).withNumberColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
             (new Cell(true,0,0), new Cell(false,0,1), new Cell(true,0,2),
                 new Cell(false,1,0), new Cell(false,1,1), new Cell(true,1,2),
                 new Cell(true,2,0), new Cell(true,2,1), new Cell(false,2,2)))).buildWorld();

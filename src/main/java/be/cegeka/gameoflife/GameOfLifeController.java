@@ -26,9 +26,8 @@ public class GameOfLifeController {
         if (givenLists.isEmpty()) {
             return givenLists;
         }
-        World currentWorld = mapper.convertNestedListsOfBooleansToWorld(givenLists);
-        World nextGenerationWorld = generation.tick(currentWorld);
-        List<List<Boolean>> nextGenerationLists = mapper.convertWorldToNestedListsOfBooleans(nextGenerationWorld);
-        return nextGenerationLists;
+        World givenWorld = mapper.convertNestedListsOfBooleansToWorld(givenLists);
+        World nextGenerationWorld = generation.tick(givenWorld);
+        return mapper.convertWorldToNestedListsOfBooleans(nextGenerationWorld);
     }
 }

@@ -64,17 +64,17 @@ public class World {
     }
 
     public static class WorldBuilder {
-        private int rows;
-        private int columns;
+        private int numberOfRows;
+        private int numberOfColumns;
         private ArrayList<Cell> cells;
 
-        public WorldBuilder withRows(int rows) {
-            this.rows = rows;
+        public WorldBuilder withNumberOfRows(int numberOfRows) {
+            this.numberOfRows = numberOfRows;
             return this;
         }
 
-        public WorldBuilder withColumns(int columns) {
-            this.columns = columns;
+        public WorldBuilder withNumberColumns(int numberOfColumns) {
+            this.numberOfColumns = numberOfColumns;
             return this;
         }
 
@@ -84,7 +84,7 @@ public class World {
         }
 
         public World buildWorld() {
-            return new World(rows, columns, cells);
+            return new World(numberOfRows, numberOfColumns, cells);
         }
     }
 

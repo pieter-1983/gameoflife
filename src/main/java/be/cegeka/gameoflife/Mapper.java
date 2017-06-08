@@ -9,15 +9,14 @@ public class Mapper {
 
     World convertNestedListsOfBooleansToWorld(List<List<Boolean>> booleanLists) {
         ArrayList<Cell> cells = new ArrayList<>();
-        for (List<Boolean> booleanList : booleanLists) {
-            for (Boolean aboolean : booleanList) {
-                int row = booleanLists.indexOf(booleanList);
-                int column = booleanList.indexOf(aboolean);
-                Cell cell = new Cell(aboolean, row, column);
+        for (int row = 0; row < booleanLists.size(); row++) {
+            for (int column = 0; column < booleanLists.get(0).size(); column++) {
+                Boolean aBoolean = booleanLists.get(row).get(column);
+                Cell cell = new Cell(aBoolean, row, column);
                 cells.add(cell);
             }
         }
-        return new World.WorldBuilder().withRows(booleanLists.size()).withColumns(booleanLists.get(0).size()).withCells(cells).buildWorld();
+        return new World.WorldBuilder().withNumberOfRows(booleanLists.size()).withNumberColumns(booleanLists.get(0).size()).withCells(cells).buildWorld();
     }
 
     List<List<Boolean>> convertWorldToNestedListsOfBooleans(World world) {

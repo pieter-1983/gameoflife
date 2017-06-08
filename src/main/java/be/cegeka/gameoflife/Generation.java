@@ -19,14 +19,14 @@ public class Generation {
             for (int column = 0; column < columns; column++) {
                 Cell cell = world.getCell(row, column);
                 int numberOfAliveNeighbours = cell.getNumberOfAliveNeighbours(world);
-                Cell nextGenerationCell = new Cell(rulesForNextGeneration(cell, numberOfAliveNeighbours), row, column);
+                Cell nextGenerationCell = new Cell(stateForNextGenerationFollowingGameOfLifeRules(cell, numberOfAliveNeighbours), row, column);
                 nextGenerationOfCells.add(nextGenerationCell);
             }
         }
-        return new World.WorldBuilder().withRows(rows).withColumns(columns).withCells(nextGenerationOfCells).buildWorld();
+        return new World.WorldBuilder().withNumberOfRows(rows).withNumberColumns(columns).withCells(nextGenerationOfCells).buildWorld();
     }
 
-    private boolean rulesForNextGeneration(Cell cell, int numberOfAliveNeighbours) {
+    private boolean stateForNextGenerationFollowingGameOfLifeRules(Cell cell, int numberOfAliveNeighbours) {
         if (aLiveCellHasLessThanTwoNeighbours(cell, numberOfAliveNeighbours)) {
             return false;
         }
