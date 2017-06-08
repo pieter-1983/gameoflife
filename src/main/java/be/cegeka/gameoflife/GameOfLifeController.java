@@ -16,15 +16,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 public class GameOfLifeController {
     @Inject
     private Generation generation;
+    @Inject
+    private Mapper mapper;
     private static Logger logger = Logger.getLogger(GameOfLifeController.class);
 
     @RequestMapping(value = "/world", method = POST)
     @ResponseBody
-    public List<List<Boolean>> getWorld(@RequestBody List<List<Boolean>> currentWorld) {
-        if (currentWorld.isEmpty()){
-            return currentWorld;
+    public List<List<Boolean>> getWorld(@RequestBody List<List<Boolean>> givenLists) {
+        if (givenLists.isEmpty()) {
+            return givenLists;
         }
-        List<List<Boolean>> nextWorld = generation.tick(currentWorld);
-        return nextWorld;
+        World currentWorld = mapper.convertNestedListsOfBooleansToWorld(givenLists);
+        World nextGenerationWorld = generation.tick(currentWorld);
+        List<List<Boolean>> nextGenerationLists = mapper.convertWorldToNestedListsOfBooleans(nextGenerationWorld);
+        return nextGenerationLists;
     }
 }
