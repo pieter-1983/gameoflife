@@ -103,6 +103,26 @@ public class World {
         return numberOfColumns;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        World world = (World) o;
+
+        if (numberOfRows != world.numberOfRows) return false;
+        if (numberOfColumns != world.numberOfColumns) return false;
+        return grid.equals(world.grid);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = grid.hashCode();
+        result = 31 * result + numberOfRows;
+        result = 31 * result + numberOfColumns;
+        return result;
+    }
+
     public static class WorldBuilder {
         private int rows;
         private int columns;
