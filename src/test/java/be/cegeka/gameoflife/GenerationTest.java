@@ -8,7 +8,7 @@ import java.util.*;
 
 public class GenerationTest {
 
-    private List<List<Boolean>> world;
+    private World world;
     private Generation generation;
 
 
@@ -19,112 +19,112 @@ public class GenerationTest {
 
     @Test
     public void tick_WhenAliveCellHasFewerThan2AliveNeighbours_ShouldReturnADeadCell() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true, false, true)));
-        world.add(new ArrayList(Arrays.asList(false, false, true)));
-        world.add(new ArrayList(Arrays.asList(true, true, false)));
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(0).get(2)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(2).get(0)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,2).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(2,0).isAlive()).isEqualTo(false);
     }
 
     @Test
     public void tick_WhenAliveCellHas2or3AliveNeighbours_ShouldReturnAliveCell() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true, false, true)));
-        world.add(new ArrayList(Arrays.asList(false, false, true)));
-        world.add(new ArrayList(Arrays.asList(true, true, false)));
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(1).get(2)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(1)).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(1,2).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,1).isAlive()).isEqualTo(true);
     }
 
     @Test
     public void tick_WhenAliveCellHas4orMoreAliveNeighbours_ShouldReturnADeadCell() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true, true, true)));
-        world.add(new ArrayList(Arrays.asList(true, true, true)));
-        world.add(new ArrayList(Arrays.asList(false, true, false)));
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(true), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(true),
+                new Cell(false), new Cell(true), new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(1)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(2)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,1).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,1).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,2).isAlive()).isEqualTo(false);
     }
 
     @Test
     public void tick_WhenDeadCellHas3AliveNeighbours_ShouldReturnAliveCell() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true, false, true)));
-        world.add(new ArrayList(Arrays.asList(false, false, true)));
-        world.add(new ArrayList(Arrays.asList(true, true, false)));
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(false), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(1).get(0)).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(1,0).isAlive()).isEqualTo(true);
     }
 
     @Test
     public void tick_WhenGivenASquareWorld_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true, true, false)));
-        world.add(new ArrayList(Arrays.asList(false, true, true)));
-        world.add(new ArrayList(Arrays.asList(true, true, false)));
+        world = new World.WorldBuilder().withRows(3).withColumns(3).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(true), new Cell(false),
+                new Cell(false), new Cell(true), new Cell(true),
+                new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(0).get(2)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(1).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(1)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(2)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(0)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(1)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(2)).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,0).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,2).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(1,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,1).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,2).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,0).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,2).isAlive()).isEqualTo(true);
     }
 
     @Test
     public void tick_WhenGivenWorldWith3RowsAnd4Columns_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true, true, false, true)));
-        world.add(new ArrayList(Arrays.asList(false, true, true, false)));
-        world.add(new ArrayList(Arrays.asList(true, true, false, true)));
+        world = new World.WorldBuilder().withRows(3).withColumns(4).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(true), new Cell(false), new Cell(true),
+                new Cell(false), new Cell(true), new Cell(true), new Cell(false),
+                new Cell(true), new Cell(true), new Cell(false), new Cell(true)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(0).get(2)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(0).get(3)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(1)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(2)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(3)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(0)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(1)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(2).get(2)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(2).get(3)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,0).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,2).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,3).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,1).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,2).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,3).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,0).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(2,2).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(2,3).isAlive()).isEqualTo(false);
     }
 
     @Test
     public void tick_WhenGivenWorldWith4RowsAnd1Column_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true)));
-        world.add(new ArrayList(Arrays.asList(false)));
-        world.add(new ArrayList(Arrays.asList(true)));
-        world.add(new ArrayList(Arrays.asList(false)));
+        world = new World.WorldBuilder().withRows(4).withColumns(1).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true),
+                new Cell(false),
+                new Cell(true),
+                new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(1).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(2).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(3).get(0)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(1,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(2,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(3,0).isAlive()).isEqualTo(false);
     }
 
     @Test
     public void tick_WhenGivenWorldWith1RowsAnd4Columns_ShouldReturnANewWorldPopulatedByGameOfLiveRules() throws Exception {
-        world = new ArrayList<List<Boolean>>();
-        world.add(new ArrayList(Arrays.asList(true,true,true,false)));
+        world = new World.WorldBuilder().withRows(1).withColumns(4).withCells(new ArrayList<Cell>(Arrays.asList
+            (new Cell(true), new Cell(true), new Cell(true), new Cell(false)))).buildWorld();
 
-        Assertions.assertThat(generation.tick(world).get(0).get(0)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(0).get(1)).isEqualTo(true);
-        Assertions.assertThat(generation.tick(world).get(0).get(2)).isEqualTo(false);
-        Assertions.assertThat(generation.tick(world).get(0).get(3)).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,0).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,1).isAlive()).isEqualTo(true);
+        Assertions.assertThat(generation.tick(world).getCell(0,2).isAlive()).isEqualTo(false);
+        Assertions.assertThat(generation.tick(world).getCell(0,3).isAlive()).isEqualTo(false);
     }
 }
